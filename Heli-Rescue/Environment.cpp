@@ -4,17 +4,16 @@ Environment::Environment() {}
 Environment::Environment(int width, int height, double gravity) : gravity(gravity), width(width), height(height) {
 	speedX = 5;
 	// Adding the player to the screen
-	Object obj(100, 0, 10, 10, true);
-	objectList.push_back(obj);
-	player = &objectList.at(0);
+	player = *(new Object(100, 10, 10, 10, true));
 }
 Environment::~Environment() {
-	objectList.~vector();
+	
 }
 
 void Environment::tick() {
 	terrGen.tick();
 
+	// Terrain Generation
 	for (int i = 0; i < speedX; i++) {
 		int next = terrGen.getNext();
 		terrain.push_back(terrGen.getNext());
@@ -23,18 +22,25 @@ void Environment::tick() {
 		}
 	}
 
-	for (int i = 0; i < objectList.size(); i++) {
-		Object* obj = &objectList.at(i);
-		if (obj->getGravityEnabled()) {
-			obj->setYSpeed(obj->getYSpeed() + gravity);
+	// Player motion
+	if (player.getGravityEnabled()) {
+		player.setYSpeed(player.getYSpeed() + gravity);
+	}
+	player.tick();
+
+	// Object Collision with terrain
+	int* obj = nullptr;
+	for (int i = 0; i < terrain.size(); i++) {
+		obj = &terrain.at(i);
+		if (height - *obj < player.getY() + player.getHeight() && i < player.getX() + player.getWidth() && i + 1 > player.getX()) {
+			player.setY(10);
+			player.setYSpeed(0);
+			std::cout << "Collsion" << std::endl;
 		}
-		obj->tick();
 	}
 }
 void Environment::render(SDL_Renderer* renderer) {
-	for (int i = 0; i < objectList.size(); i++) {
-		objectList.at(i).render(renderer);
-	}
+	player.render(renderer);
 	for (int i = 0; i < terrain.size(); i++) {
 		SDL_Rect rect;
 		rect.x = i;

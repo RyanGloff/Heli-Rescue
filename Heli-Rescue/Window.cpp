@@ -13,6 +13,7 @@ Window::Window(char* title) : title(title) {
 
 Window::~Window() {
 	SDL_DestroyWindow(window);
+	SDL_DestroyRenderer(renderer);
 }
 
 void Window::render() {

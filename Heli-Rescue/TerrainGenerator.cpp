@@ -15,7 +15,7 @@ TerrainGenerator::~TerrainGenerator() {
 }
 
 void TerrainGenerator::tick() {
-	while (buffer.size() < 50) {
+	while (buffer.size() < 2000) {
 		static const int MAX_HEIGHT = 350;
 		static const int MIN_HEIGHT = 50;
 		static const int MAX_SPEED = 3;
