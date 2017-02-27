@@ -6,7 +6,7 @@
 #include "TerrainGenerator.h"
 
 class Environment {
-	std::vector<int> terrain;
+	std::vector<Object> terrain;
 	Object player;
 
 	TerrainGenerator terrGen;

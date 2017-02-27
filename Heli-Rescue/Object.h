@@ -19,6 +19,8 @@ public:
 	void tick();
 	void render(SDL_Renderer* renderer);
 
+	static bool checkCollision(Object* obj1, Object* obj2);
+
 	double getX();
 	double getY();
 	double getWidth();
