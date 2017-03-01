@@ -22,6 +22,6 @@ public:
 
 	void tick();
 	void render(SDL_Renderer* renderer);
-	static Object getPlayer();
+	Object& getPlayer();
 };
 
