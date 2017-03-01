@@ -20,5 +20,6 @@ public:
 
 	void render();
 	void tick();
+	Environment& getEnv();
 };
 
