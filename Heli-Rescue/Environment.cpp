@@ -4,7 +4,7 @@ Environment::Environment() {}
 Environment::Environment(int width, int height, double gravity) : gravity(gravity), width(width), height(height) {
 	speedX = 5;
 	// Adding the player to the screen
-	player = *(new Object(100, 10, 10, 10, true));
+	player = *(new Object(100, 10, 100, 100, true,"heli.png"));
 }
 Environment::~Environment() {
 	
@@ -51,9 +51,5 @@ void Environment::render(SDL_Renderer* renderer) {
 		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 		SDL_RenderFillRect(renderer, &rect);
 	}
-}
 	
-Object& Environment::getPlayer()
-{
-	return player;
 }

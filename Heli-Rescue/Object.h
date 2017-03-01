@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL.h>
 #include <iostream>
+
 class Object {
 private:
 	double x;
@@ -11,10 +12,15 @@ private:
 	double ySpeed;
 
 	bool gravity;
+
+	SDL_Texture *objectTexture;
+	SDL_Surface* objectSurface;
 public:
 	Object();
 	Object(double x, double y, double width, double height, bool gravity);
+	Object(double x, double y, double width, double height, bool gravity, const std::string &imgPath);
 	~Object();
+
 
 	void tick();
 	void render(SDL_Renderer* renderer);

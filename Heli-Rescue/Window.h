@@ -1,6 +1,6 @@
 #pragma once
-#include <SDL.h>
 
+#include <SDL.h>
 #include "Environment.h"
 
 class Window {
@@ -10,9 +10,7 @@ private:
 	char* title;
 
 	SDL_Window* window = nullptr;
-	SDL_Surface* surface = nullptr;
-	SDL_Renderer* renderer = nullptr;
-
+	
 	Environment env;
 public:
 	Window(char* title);
@@ -20,6 +18,8 @@ public:
 
 	void render();
 	void tick();
-	Environment& getEnv();
+	
+	static SDL_Renderer *renderer;
+	static SDL_Surface *surface;
 };
 
