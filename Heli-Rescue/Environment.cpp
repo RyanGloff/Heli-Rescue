@@ -52,7 +52,7 @@ void Environment::render(SDL_Renderer* renderer) {
 		SDL_RenderFillRect(renderer, &rect);
 	}
 
-Object Environment::getPlayer()
+Object& Environment::getPlayer()
 {
-	return this->player;
+	return player;
 }
