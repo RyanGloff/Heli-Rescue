@@ -8,7 +8,7 @@ Window::Window(char* title) : title(title) {
 		std::cout << "Window could not be created! SDL_Error: " << SDL_GetError() << std::endl;
 	}
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-	env = *(new Environment(WIDTH, HEIGHT, 1));
+	env = new Environment(WIDTH, HEIGHT, 1);
 }
 
 Window::~Window() {
@@ -26,10 +26,10 @@ void Window::render() {
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 	SDL_RenderClear(renderer);
 
-	env.render(renderer);
+	env->render(renderer);
 
 	SDL_RenderPresent(renderer);
 }
 void Window::tick() {
-	env.tick();
+	env->tick();
 }

@@ -15,6 +15,12 @@ class Environment {
 	int height;
 	double speedX;
 	double gravity;
+
+	const int BUILDING_SPACING = 15;
+	const int BUILDING_WIDTH = 50;
+
+	void addTerrain(int xLoc);
+	void createInitTerrain();
 public:
 	Environment();
 	Environment(int width, int height, double gravity);

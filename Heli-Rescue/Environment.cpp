@@ -5,6 +5,8 @@ Environment::Environment(int width, int height, double gravity) : gravity(gravit
 	speedX = 5;
 	// Adding the player to the screen
 	player = *(new Object(100, 10, 10, 10, true));
+	
+	createInitTerrain();
 }
 Environment::~Environment() {
 	
@@ -14,13 +16,9 @@ void Environment::tick() {
 	terrGen.tick();
 
 	// Terrain Generation
-	static int tickNumber = 0;
-	tickNumber++;
-	if (tickNumber % 15 == 0) {
-		int buildingHeight = terrGen.getNext();
-		Object obj(width, height - buildingHeight, 50, buildingHeight, false);
-		obj.setXSpeed(-speedX);
-		terrain.push_back(obj);
+	Object last = terrain.back();
+	if (last.getX() < width) {
+		addTerrain(last.getX() + BUILDING_SPACING + BUILDING_WIDTH);
 	}
 
 	// Terrain updating
@@ -34,18 +32,34 @@ void Environment::tick() {
 	}
 	player.tick();
 
-	// Object Collision with terrain
-	Object* obj = nullptr;
+	// Player Collision with terrain
 	for (int i = 0; i < terrain.size(); i++) {
-		obj = &terrain.at(i);
-		if (Object::checkCollision(obj, &player)) {
+		if (Object::checkCollision(&terrain.at(i) , &player)) {
 			std::cout << "Collision" << std::endl;
 		}
+	}
+
+	// Removing old buildings from the terrain
+	if (terrain.front().getX() < -terrain.front().getWidth()) {
+		terrain.erase(terrain.begin());
 	}
 }
 void Environment::render(SDL_Renderer* renderer) {
 	player.render(renderer);
 	for (int i = 0; i < terrain.size(); i++) {
 		terrain.at(i).render(renderer);
+	}
+}
+
+void Environment::addTerrain(int xLoc) {
+	int buildingHeight = terrGen.getNext();
+	Object obj(xLoc, height - buildingHeight, BUILDING_WIDTH, buildingHeight, false);
+	obj.setXSpeed(-speedX);
+	terrain.push_back(obj);
+}
+
+void Environment::createInitTerrain() {
+	for (int i = 0; i < width / (BUILDING_SPACING + BUILDING_WIDTH); i++) {
+		addTerrain(i * (BUILDING_WIDTH + BUILDING_SPACING));
 	}
 }

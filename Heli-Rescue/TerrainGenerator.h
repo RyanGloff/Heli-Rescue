@@ -4,7 +4,6 @@
 class TerrainGenerator {
 private:
 	std::vector<int> buffer;
-	std::vector<int> terrainValues;
 
 	int seed;
 public:
@@ -13,6 +12,8 @@ public:
 	~TerrainGenerator();
 
 	void tick();
+
+	void refillBuffer();
 	
 	int getSeed();
 	int getNext();

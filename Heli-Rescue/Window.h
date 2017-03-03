@@ -13,7 +13,7 @@ private:
 	SDL_Surface* surface = nullptr;
 	SDL_Renderer* renderer = nullptr;
 
-	Environment env;
+	Environment* env;
 public:
 	Window(char* title);
 	~Window();

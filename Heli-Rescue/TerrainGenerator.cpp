@@ -6,15 +6,21 @@
 TerrainGenerator::TerrainGenerator() {
 	seed = time(NULL);
 	srand(seed);
+	refillBuffer();
 }
 TerrainGenerator::TerrainGenerator(int seed) : seed(seed) {
 	srand(seed);
+	refillBuffer();
 }
 TerrainGenerator::~TerrainGenerator() {
 
 }
 
 void TerrainGenerator::tick() {
+	refillBuffer();
+}
+
+void TerrainGenerator::refillBuffer() {
 	while (buffer.size() < 20) {
 		static const int MAX_HEIGHT = 350;
 		static const int MIN_HEIGHT = 50;

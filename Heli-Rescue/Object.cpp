@@ -21,10 +21,10 @@ void Object::render(SDL_Renderer* renderer) {
 	SDL_SetRenderDrawColor(renderer, 100, 100, 100, 255);
 	
 	SDL_Rect rect;
-	rect.x = x;
-	rect.y = y;
-	rect.w = width;
-	rect.h = height;
+	rect.x = (int) x;
+	rect.y = (int) y;
+	rect.w = (int) width;
+	rect.h = (int) height;
 
 	SDL_RenderFillRect(renderer, &rect);
 }
