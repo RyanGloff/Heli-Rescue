@@ -23,16 +23,30 @@ void InputHandler::handle(bool& isRunning, Window& window)
 		}
 		else if (ev.type == SDL_KEYDOWN)
 		{
-			switch (ev.key.keysym.sym)
-			{
-			case SDLK_w:
-				player.setYSpeed(-10);
-				break;
-			}
+			keyHandler(ev, player);
 		}
 		else if (ev.type == SDL_MOUSEBUTTONDOWN)
 		{
-			std::cout << "We're getting mouse input" << std::endl;
+			mouseHandler(ev);
 		}
 	}
 }
+
+void InputHandler::keyHandler(SDL_Event ev, Object& player)
+{
+	switch (ev.key.keysym.sym)
+	{
+	case SDLK_w:
+		player.setYSpeed(-10);
+		break;
+	case SDLK_s:
+		player.setYSpeed(10);
+		break;
+	}
+}
+
+void InputHandler::mouseHandler(SDL_Event ev)
+{
+	std::cout << "We're getting mouse input" << std::endl;
+}
+
