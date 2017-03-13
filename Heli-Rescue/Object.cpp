@@ -8,7 +8,6 @@ Object::Object(double x, double y, double width, double height, bool gravity) : 
 	ySpeed = 0;
 }
 
-
 Object::~Object() {
 
 }
@@ -16,7 +15,17 @@ Object::~Object() {
 void Object::tick() {
 	x += xSpeed;
 	y += ySpeed;
+	//temp hardcode values
+	if (ySpeed > 0)
+	{
+		ySpeed -= 0.5;
+	}
+	else if (ySpeed < 0)
+	{
+		ySpeed += 0.5;
+	}
 }
+
 void Object::render(SDL_Renderer* renderer) {
 	SDL_SetRenderDrawColor(renderer, 100, 100, 100, 255);
 	
