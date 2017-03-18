@@ -4,12 +4,15 @@
 
 #include "Object.h"
 #include "TerrainGenerator.h"
+#include "EntityGenerator.h"
 
 class Environment {
 	std::vector<Object> terrain;
+	std::vector<Object> entities;
 	Object player;
 
 	TerrainGenerator terrGen;
+	EntityGenerator entGen;
 
 	int width;
 	int height;
@@ -20,6 +23,7 @@ class Environment {
 	const int BUILDING_WIDTH = 50;
 
 	void addTerrain(int xLoc);
+	void addEntity();
 	void createInitTerrain();
 public:
 	Environment();

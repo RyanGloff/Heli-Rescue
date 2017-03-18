@@ -4,16 +4,18 @@ Environment::Environment() {}
 Environment::Environment(int width, int height, double gravity) : gravity(gravity), width(width), height(height) {
 	speedX = 5;
 	// Adding the player to the screen
-	player = *(new Object(100, 10, 10, 10, true));
-	
+	player = *(new Object(100, 10, 10, 10, false));
+	entGen = *(new EntityGenerator(width, height));
+
 	createInitTerrain();
 }
 Environment::~Environment() {
-	
+	delete &entGen;
 }
 
 void Environment::tick() {
 	terrGen.tick();
+	entGen.tick();
 
 	// Terrain Generation
 	Object last = terrain.back();
@@ -26,16 +28,45 @@ void Environment::tick() {
 		terrain.at(i).tick();
 	}
 
+	// Entity Generation
+	static int tickNumber = 0;
+	static int delay = 0;
+	if (tickNumber == delay) {
+		delay = rand() % 90 + 45;
+		tickNumber = 0;
+		addEntity();
+	}
+	tickNumber++;
+
+	// Entity updating
+	for (int i = 0; i < entities.size(); i++) {
+		entities.at(i).tick();
+	}
+
 	// Player motion
 	if (player.getGravityEnabled()) {
 		player.setYSpeed(player.getYSpeed() + gravity);
 	}
 	player.tick();
 
-	// Player Collision with terrain
 	for (int i = 0; i < terrain.size(); i++) {
+		// Player collision with terrain
 		if (Object::checkCollision(&terrain.at(i) , &player)) {
 			std::cout << "Collision" << std::endl;
+		}
+		// Entity-Terrain collision
+		for (int ent = 0; ent < entities.size(); ent++) {
+			if (Object::checkCollision(&terrain.at(i), &entities.at(ent))) {
+				entities.erase(entities.begin() + ent);
+			}
+		}
+	}
+
+	// Player-Entity collision
+	for (int i = 0; i < entities.size(); i++) {
+		if (Object::checkCollision(&player, &entities.at(i))) {
+			entities.erase(entities.begin() + i);
+			std::cout << "The player collided with an entity" << std::endl;
 		}
 	}
 
@@ -49,6 +80,9 @@ void Environment::render(SDL_Renderer* renderer) {
 	for (int i = 0; i < terrain.size(); i++) {
 		terrain.at(i).render(renderer);
 	}
+	for (int i = 0; i < entities.size(); i++) {
+		entities.at(i).render(renderer);
+	}
 }
 
 void Environment::addTerrain(int xLoc) {
@@ -56,6 +90,9 @@ void Environment::addTerrain(int xLoc) {
 	Object obj(xLoc, height - buildingHeight, BUILDING_WIDTH, buildingHeight, false);
 	obj.setXSpeed(-speedX);
 	terrain.push_back(obj);
+}
+void Environment::addEntity() {
+	entities.push_back(entGen.nextEntity());
 }
 
 void Environment::createInitTerrain() {
