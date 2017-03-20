@@ -4,9 +4,9 @@ Environment::Environment() {}
 Environment::Environment(int width, int height, double gravity) : gravity(gravity), width(width), height(height) {
 	speedX = 5;
 	// Adding the player to the screen
-	player = *(new Object(100, 10, 10, 10, false));
+	player = *(new Object(100, 10, 50, 50, true,"heli.png"));
 	entGen = *(new EntityGenerator(width, height));
-
+	
 	createInitTerrain();
 }
 Environment::~Environment() {
@@ -49,9 +49,12 @@ void Environment::tick() {
 	}
 	player.tick();
 
+	// Player collision with terrain
 	for (int i = 0; i < terrain.size(); i++) {
-		// Player collision with terrain
-		if (Object::checkCollision(&terrain.at(i) , &player)) {
+		
+		if (Object::checkCollision(&terrain.at(i), &player)) {
+			player.setY(10);
+			player.setYSpeed(0);
 			std::cout << "Collision" << std::endl;
 		}
 		// Entity-Terrain collision
@@ -87,10 +90,11 @@ void Environment::render(SDL_Renderer* renderer) {
 
 void Environment::addTerrain(int xLoc) {
 	int buildingHeight = terrGen.getNext();
-	Object obj(xLoc, height - buildingHeight, BUILDING_WIDTH, buildingHeight, false);
+	Object obj(xLoc, height - buildingHeight, BUILDING_WIDTH, buildingHeight, false,"building.png");
 	obj.setXSpeed(-speedX);
 	terrain.push_back(obj);
 }
+
 void Environment::addEntity() {
 	entities.push_back(entGen.nextEntity());
 }
@@ -99,4 +103,9 @@ void Environment::createInitTerrain() {
 	for (int i = 0; i < width / (BUILDING_SPACING + BUILDING_WIDTH); i++) {
 		addTerrain(i * (BUILDING_WIDTH + BUILDING_SPACING));
 	}
+}
+
+Object& Environment::getPlayer()
+{
+	return player;
 }

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <SDL.h>
+#include "InputHandler.h"
 
 #include "Window.h"
 
@@ -25,11 +26,9 @@ int main(int argc, char* argv[]) {
 	Uint32 startRender = SDL_GetTicks();
 	int frames = 0;
 	while (running) {
-		while (SDL_PollEvent(&e) != 0) {
-			if (e.type == SDL_QUIT || e.key.keysym.sym == SDLK_ESCAPE) {
-				running = false;
-			}
-		}
+		
+		InputHandler::handle(running, *window);
+		
 		Uint32 currentTick = SDL_GetTicks();
 		if (currentTick - startTick >= TIME_PER_TICK) {
 			tick();

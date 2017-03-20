@@ -33,3 +33,8 @@ void Window::render() {
 void Window::tick() {
 	env->tick();
 }
+
+Environment& Window::getEnv()
+{
+	return *env;
+}

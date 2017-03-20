@@ -25,7 +25,7 @@ void EntityGenerator::refillBuffer() {
 		double x = envWidth + rand() % 50;
 		double y = rand() % 50;
 		double speedX = (rand() % 5);
-		Object obj(x, y, 50, 50, false);
+		Object obj(x, y, 100, 50, false,"bird.png");
 		obj.setXSpeed(-speedX);
 		entityBuffer.push_back(obj);
 	}

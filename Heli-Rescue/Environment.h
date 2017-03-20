@@ -1,7 +1,6 @@
 #pragma once
 #include <SDL.h>
 #include <vector>
-
 #include "Object.h"
 #include "TerrainGenerator.h"
 #include "EntityGenerator.h"
@@ -32,5 +31,6 @@ public:
 
 	void tick();
 	void render(SDL_Renderer* renderer);
+	Object& getPlayer();
 };
 
