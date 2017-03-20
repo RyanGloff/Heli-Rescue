@@ -8,7 +8,9 @@
 class Environment {
 	std::vector<Object> terrain;
 	std::vector<Object> entities;
+	
 	Object player;
+	Object bg;
 
 	TerrainGenerator terrGen;
 	EntityGenerator entGen;

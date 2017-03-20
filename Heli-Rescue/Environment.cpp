@@ -4,6 +4,7 @@ Environment::Environment() {}
 Environment::Environment(int width, int height, double gravity) : gravity(gravity), width(width), height(height) {
 	speedX = 5;
 	// Adding the player to the screen
+	bg = *(new Object(0, 0, width, height, false, "bg.png"));
 	player = *(new Object(100, 10, 50, 50, true,"heli.png"));
 	entGen = *(new EntityGenerator(width, height));
 	
@@ -68,6 +69,8 @@ void Environment::tick() {
 	// Player-Entity collision
 	for (int i = 0; i < entities.size(); i++) {
 		if (Object::checkCollision(&player, &entities.at(i))) {
+			player.setY(height / 2);
+			player.setYSpeed(10);
 			entities.erase(entities.begin() + i);
 			std::cout << "The player collided with an entity" << std::endl;
 		}
@@ -79,7 +82,9 @@ void Environment::tick() {
 	}
 }
 void Environment::render(SDL_Renderer* renderer) {
+	bg.render(renderer);
 	player.render(renderer);
+	
 	for (int i = 0; i < terrain.size(); i++) {
 		terrain.at(i).render(renderer);
 	}
