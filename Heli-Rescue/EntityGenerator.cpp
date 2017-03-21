@@ -14,18 +14,22 @@ void EntityGenerator::tick() {
 }
 
 Object EntityGenerator::nextEntity() {
-	std::cout << "Adding new entity" << std::endl;
 	Object* returnObject = &entityBuffer.back();
 	entityBuffer.pop_back();
 	return *returnObject;
 }
 
 void EntityGenerator::refillBuffer() {
-	while (entityBuffer.size() <= 3) {
-		double x = envWidth + rand() % 50;
-		double y = rand() % 50;
-		double speedX = (rand() % 5);
-		Object obj(x, y, 100, 50, false,"bird.png");
+	static const int MAX_BUFFER_SIZE = 3;
+	static const int MIN_Y = 500;
+	static const int MIN_SPEED_X = 7;
+	static const int SPEED_SPREAD = 3;
+
+	while (entityBuffer.size() <= MAX_BUFFER_SIZE) {
+		double x = envWidth;
+		double y = rand() % MIN_Y;
+		double speedX = MIN_SPEED_X + (rand() % SPEED_SPREAD);
+		Object obj(x, y, 100, 50, false, "assets/bird.png");
 		obj.setXSpeed(-speedX);
 		entityBuffer.push_back(obj);
 	}

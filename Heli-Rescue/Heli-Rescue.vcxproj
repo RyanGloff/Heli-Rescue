@@ -68,7 +68,10 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\SDL2_ttf-2.0.14\include;C:\SDL2_image-2.0.1\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\SDL2_ttf-2.0.14\lib\x86;C:\SDL2_image-2.0.1\lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -78,7 +81,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>C:\SDL2-2.0.5\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2main.lib;SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -118,6 +121,7 @@
   <ItemGroup>
     <ClCompile Include="EntityGenerator.cpp" />
     <ClCompile Include="Environment.cpp" />
+    <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="TerrainGenerator.cpp" />
@@ -126,9 +130,17 @@
   <ItemGroup>
     <ClInclude Include="EntityGenerator.h" />
     <ClInclude Include="Environment.h" />
+    <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="TerrainGenerator.h" />
     <ClInclude Include="Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="bg.png" />
+    <Image Include="bird.png" />
+    <Image Include="building.png" />
+    <Image Include="heli.png" />
+    <Image Include="person.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

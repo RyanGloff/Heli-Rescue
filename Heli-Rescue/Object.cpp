@@ -17,11 +17,11 @@ Object::Object(double x, double y, double width, double height, bool gravity, co
 
 	SDL_Surface* surface = IMG_Load(imgPath.c_str());
 	if (surface == NULL) {
-		std::cerr << "failed to create surface\n";
+		std::cerr << "IMG_Load: " << IMG_GetError();
 	}
 	objectTexture = SDL_CreateTextureFromSurface(Window::renderer, surface);
 	if (objectTexture == NULL) {
-		std::cerr << "failed to create texture\n";
+		std::cerr << "SDL_CreateTextureFromSurface: " << IMG_GetError() << "\n";
 	}
 	SDL_FreeSurface(surface);
 
@@ -37,15 +37,6 @@ Object::~Object() {
 void Object::tick() {
 	x += xSpeed;
 	y += ySpeed;
-
-	if (ySpeed > 0) {
-		
-		ySpeed -= 0.5;
-	}
-	else if (ySpeed < 0) {
-		
-		ySpeed += 0.5;
-	}
 }
 void Object::render(SDL_Renderer* renderer) {
 	SDL_Rect rect;

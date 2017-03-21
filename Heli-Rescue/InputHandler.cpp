@@ -8,7 +8,7 @@ InputHandler::~InputHandler()
 }
 
 void InputHandler::handle(bool& isRunning, Window& window)
-{	
+{
 	SDL_Event ev;
 
 	Environment& target = window.getEnv();
@@ -23,7 +23,7 @@ void InputHandler::handle(bool& isRunning, Window& window)
 		}
 		else if (ev.type == SDL_KEYDOWN)
 		{
-			keyHandler(ev, player);
+			keyHandler(ev, player, &isRunning);
 		}
 		else if (ev.type == SDL_MOUSEBUTTONDOWN)
 		{
@@ -32,15 +32,18 @@ void InputHandler::handle(bool& isRunning, Window& window)
 	}
 }
 
-void InputHandler::keyHandler(SDL_Event ev, Object& player)
+void InputHandler::keyHandler(SDL_Event ev, Object& player, bool* isRunning)
 {
 	switch (ev.key.keysym.sym)
 	{
 	case SDLK_w:
-		player.setYSpeed(-10);
+		player.setYSpeed(-4);
 		break;
 	case SDLK_s:
-		player.setYSpeed(10);
+		player.setYSpeed(3);
+		break;
+	case SDLK_ESCAPE:
+		*isRunning = false;
 		break;
 	}
 }

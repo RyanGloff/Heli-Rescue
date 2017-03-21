@@ -20,7 +20,7 @@ SDL_Event e;
 
 int main(int argc, char* argv[]) {
 	init();
-	const int TPS = 30;
+	const int TPS = 60;
 	const int TIME_PER_TICK = 1000 / TPS;
 	Uint32 startTick = SDL_GetTicks();
 	Uint32 startRender = SDL_GetTicks();
