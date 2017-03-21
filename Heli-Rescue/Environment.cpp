@@ -77,8 +77,8 @@ void Environment::tick() {
 	// Player-Entity collision
 	for (int i = 0; i < entities.size(); i++) {
 		if (Object::checkCollision(&player, &entities.at(i))) {
-			player.setY(height / 2);
-			player.setYSpeed(10);
+			player.setY(0);
+			player.setYSpeed(0);
 			entities.erase(entities.begin() + i);
 			std::cout << "The player collided with an entity" << std::endl;
 		}
@@ -139,7 +139,7 @@ void Environment::addTerrain(int xLoc) {
 	obj.setXSpeed(-speedX);
 	terrain.push_back(obj);
 	if (personGap == gap) {
-		Object person(obj.getX(), obj.getY() - 100, 25, 100, false, "assets/person.png");
+		Object person(obj.getX(), obj.getY() - 87, 45, 87, false, "assets/person.png");
 		person.setXSpeed(-speedX);
 		people.push_back(person);
 		personGap = 0;
