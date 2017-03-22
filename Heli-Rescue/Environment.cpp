@@ -1,4 +1,7 @@
 #include "Environment.h"
+#include "Sounds.h"
+
+Sounds coll("assets/coll.wav", "effect");
 
 Environment::Environment() {}
 Environment::Environment(int width, int height, double gravity) : gravity(gravity), width(width), height(height) {
@@ -64,6 +67,7 @@ void Environment::tick() {
 		if (Object::checkCollision(&terrain.at(i), &player)) {
 			player.setY(10);
 			player.setYSpeed(0);
+			coll.play();
 			std::cout << "Player collided with the terrain" << std::endl;
 		}
 		// Entity-Terrain collision
@@ -80,6 +84,7 @@ void Environment::tick() {
 			player.setY(0);
 			player.setYSpeed(0);
 			entities.erase(entities.begin() + i);
+			coll.play();
 			std::cout << "The player collided with an entity" << std::endl;
 		}
 	}
