@@ -1,30 +1,35 @@
 #include "Menu.h"
 #include <iostream>
 
-Menu::Menu() {}
-Menu::~Menu() {}
+Menu::Menu() {
+}
+Menu::~Menu() {
+	SDL_DestroyTexture(textTexture);
+	SDL_FreeSurface(textSurface);
+	TTF_CloseFont(font);
+}
 
 Menu::Menu(int initState) {
 	state = initState;
 }
 
 void Menu::render(SDL_Renderer* renderer) {
-	if (state == MAIN_MENU) {
+	if (state == 1) {
 		mainMenuRender(renderer);
-	} else if (state == EXIT_MENU) {
+	} else if (state == 2) {
 		exitMenuRender(renderer);
 	}
 }
 
 void Menu::mainMenuRender(SDL_Renderer* renderer) {
-	SDL_RenderClear(renderer);
-	std::cout << "In mainMenu" << std::endl;
+	//SDL_RenderClear(renderer);
+	//std::cout << "In mainMenu" << std::endl;
 
-	textDisplay("Welcome to Heli-Rescue!", 40, 40, 100, 0, 85, 255, renderer);
-	textDisplay("Start Game [G]", 40, 160, 72, 255, 230, 0, renderer);
-	textDisplay("Quit Game [Q]", 40, 260, 72, 50, 255, 0, renderer);
+	textDisplay("Welcome to Heli-Rescue!", 240, 40, 100, 0, 85, 255, renderer);
+	textDisplay("Start Game [G]", 440, 160, 72, 255, 230, 0, renderer);
+	textDisplay("Quit Game [Q]", 440, 260, 72, 50, 255, 0, renderer);
 
-	std::cout << "Everything displayed on screen" << std::endl;
+	//std::cout << "Everything displayed on screen" << std::endl;
 }
 
 void Menu::exitMenuRender(SDL_Renderer* renderer) {
@@ -33,17 +38,27 @@ void Menu::exitMenuRender(SDL_Renderer* renderer) {
 	std::cout << "sure you want to quit?";
 }
 
-void Menu::handleEvent(SDL_Event* e) {
-	if (state == MAIN_MENU) {
-		if (e->key.keysym.sym == SDLK_g) {
-			std::cout << "Start the game" << std::endl;
+void Menu::handleEvent(SDL_Event e, bool& isRunning, bool& isStart) {
+
+	while (SDL_PollEvent(&e) != 0){
+		if (e.type == SDL_QUIT) {
+			isStart = false;
 		}
+		else if (e.type == SDL_KEYDOWN) {
+			switch (e.key.keysym.sym)
+			{
+			case SDLK_g:
+				isStart = false;
+				isRunning = true;
+				break;
+			case SDLK_q:
+				isStart = false;
+				break;
+			}
+		}	
 	}
-	else if (state == EXIT_MENU) {
-		// Set key functions for exit menu here
-	}
-	
 }
+
 
 void Menu::setState(int state) {
 	this->state = state;
@@ -56,7 +71,7 @@ void Menu::textDisplay(std::string text, int x, int y, int size, int r, int g, i
 	TTF_Font* font = TTF_OpenFont("vevey.ttf", size);
 	SDL_Color color = { r, g, b };
 
-	SDL_Surface* textSurface = TTF_RenderText_Blended(font, text.c_str(), color);
+	SDL_Surface* textSurface = TTF_RenderText_Solid(font, text.c_str(), color);
 	SDL_Texture* textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
 
 	int w = 0;
@@ -67,7 +82,8 @@ void Menu::textDisplay(std::string text, int x, int y, int size, int r, int g, i
 	SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
 	SDL_RenderPresent(renderer);
 
-	SDL_DestroyTexture(textTexture);
+	/*SDL_DestroyTexture(textTexture);
 	SDL_FreeSurface(textSurface);
 	TTF_CloseFont(font);
+	*/
 }

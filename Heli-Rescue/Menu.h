@@ -8,8 +8,10 @@ class Menu
 {
 	std::string text;
 	TTF_Font* font = nullptr;
-	SDL_Event e;
+	//static SDL_Event e;
 	bool quit;
+	SDL_Surface* textSurface;
+	SDL_Texture* textTexture;
 
 	static const int MAIN_MENU = 0;
 	static const int EXIT_MENU = 1;
@@ -17,11 +19,13 @@ class Menu
 	int state = 0;
 
 public:
+	static SDL_Event e;
+
 	Menu();
 	Menu(int initState);
 	~Menu();
 
-	void handleEvent(SDL_Event* e);
+	static void handleEvent(SDL_Event e,bool& isRunning, bool& isStart);
 
 	void render(SDL_Renderer* renderer);
 	void mainMenuRender(SDL_Renderer* renderer);
