@@ -37,7 +37,7 @@ void InputHandler::keyHandler(SDL_Event ev, Object& player, bool* isRunning)
 	switch (ev.key.keysym.sym)
 	{
 	case SDLK_w:
-		player.setYSpeed(-4);
+		player.setYSpeed(-3);
 		break;
 	case SDLK_s:
 		player.setYSpeed(3);

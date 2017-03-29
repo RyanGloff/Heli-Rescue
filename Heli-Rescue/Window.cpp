@@ -1,5 +1,4 @@
 #include "Window.h"
-
 #include <iostream>
 
 Window::Window(char* title) : title(title) {
@@ -8,7 +7,7 @@ Window::Window(char* title) : title(title) {
 		std::cout << "Window could not be created! SDL_Error: " << SDL_GetError() << std::endl;
 	}
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-	env = new Environment(WIDTH, HEIGHT, 0.1);
+	env = new Environment(WIDTH, HEIGHT, .5);
 }
 
 Window::~Window() {

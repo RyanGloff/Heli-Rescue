@@ -31,11 +31,11 @@ void Sounds::play() {
 	if (soundType == "music") {
 		if (Mix_PlayingMusic() == 0)
 			Mix_PlayMusic(mus, -1);
-			std::cout << "playing music\n";
+			//std::cout << "playing music\n";
 	}
 	else if (soundType == "effect") {
 		Mix_PlayChannel(-1, eff, 0);
-		std::cout << "playing effect\n";
+		//std::cout << "playing effect\n";
 	}
 }
 

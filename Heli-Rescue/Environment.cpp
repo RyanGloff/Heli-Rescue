@@ -8,7 +8,7 @@ Environment::Environment(int width, int height, double gravity) : gravity(gravit
 	speedX = 5;
 	// Adding the player to the screen
 	bg = *(new Object(0, 0, width, height, false, "assets/bg.png"));
-	player = *(new Object(100, 10, 50, 50, true, "assets/heli.png"));
+	player = *(new Object(100, 10, 50, 50, false, "assets/heli.png"));
 	entGen = *(new EntityGenerator(width, height));
 	
 	createInitTerrain();
