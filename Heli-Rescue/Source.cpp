@@ -28,6 +28,7 @@ int main(int argc, char* argv[]) {
 	init();
 	const int TPS = 60;
 	const int TIME_PER_TICK = 1000 / TPS;
+	
 	while (start) {
 		Menu::handleEvent(Menu::e, running, start);
 		Main.render(Window::renderer);
@@ -36,9 +37,6 @@ int main(int argc, char* argv[]) {
 	Uint32 startTick = SDL_GetTicks();
 	Uint32 startRender = SDL_GetTicks();
 	int frames = 0;
-	
-	
-	
 	while (running) {	
 		InputHandler::handle(running, *window);
 		bg.play();
@@ -61,7 +59,7 @@ int main(int argc, char* argv[]) {
 }
 
 void init() {
-	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
+	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 		std::cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;
 	}
 	window = new Window("Heli-Rescue");

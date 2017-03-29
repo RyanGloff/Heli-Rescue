@@ -15,6 +15,7 @@ Menu::Menu(int initState) {
 }
 
 void Menu::render(SDL_Renderer* renderer) {
+	TTF_Init();
 	if (state == 1) {
 		mainMenuRender(renderer);
 	} else if (state == 2) {
@@ -69,10 +70,10 @@ int Menu::getState() {
 }
 
 void Menu::textDisplay(std::string text, int x, int y, int size, int r, int g, int b, SDL_Renderer* renderer) {
-	TTF_Font* font = TTF_OpenFont("vevey.ttf", size);
+	TTF_Font* font = TTF_OpenFont("assets/vevey.ttf", size);
 	SDL_Color color = { r, g, b };
 
-	SDL_Surface* textSurface = TTF_RenderText_Solid(font, text.c_str(), color);
+	SDL_Surface* textSurface = TTF_RenderText_Blended(font, text.c_str(), color);
 	SDL_Texture* textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
 
 	int w = 0;
@@ -84,7 +85,7 @@ void Menu::textDisplay(std::string text, int x, int y, int size, int r, int g, i
 	SDL_RenderPresent(renderer);
 
 	/*SDL_DestroyTexture(textTexture);
-	SDL_FreeSurface(textSurface);
+	SDL_FreeSurface(textSurface);*/
 	TTF_CloseFont(font);
-	*/
+	
 }
