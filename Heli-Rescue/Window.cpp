@@ -27,7 +27,7 @@ void Window::render() {
 
 	env->render(renderer);
 
-	SDL_RenderPresent(renderer);
+	//SDL_RenderPresent(renderer);
 }
 void Window::tick() {
 	env->tick();

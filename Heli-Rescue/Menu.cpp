@@ -7,7 +7,7 @@ Menu::Menu() {
 Menu::~Menu() {
 	SDL_DestroyTexture(textTexture);
 	SDL_FreeSurface(textSurface);
-	TTF_CloseFont(font);
+	
 }
 
 Menu::Menu(int initState) {
@@ -28,8 +28,8 @@ void Menu::mainMenuRender(SDL_Renderer* renderer) {
 	//std::cout << "In mainMenu" << std::endl;
 
 	textDisplay("Welcome to Heli-Rescue!", 240, 40, 100, 0, 85, 255, renderer);
-	textDisplay("Start Game [G]", 440, 160, 72, 255, 230, 0, renderer);
-	textDisplay("Quit Game [Q]", 440, 260, 72, 50, 255, 0, renderer);
+	textDisplay("Start Game [G]", 400, 160, 72, 255, 230, 0, renderer);
+	textDisplay("Quit Game [Q]", 400, 260, 72, 50, 255, 0, renderer);
 
 	//std::cout << "Everything displayed on screen" << std::endl;
 }
