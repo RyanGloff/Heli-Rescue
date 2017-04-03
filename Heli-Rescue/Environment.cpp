@@ -10,7 +10,7 @@ Environment::Environment(int width, int height, double gravity) : gravity(gravit
 	bg = *(new Object(0, 0, width, height, false, "assets/bg.png"));
 	player = *(new Object(100, 10, 50, 50, false, "assets/heli.png"));
 	entGen = *(new EntityGenerator(width, height));
-	
+
 	createInitTerrain();
 }
 Environment::~Environment() {
@@ -58,12 +58,19 @@ void Environment::tick() {
 	}
 	if (player.getY() < 0) {
 		player.setY(0);
+	} else if (player.getY() > height - player.getHeight()) {
+		player.setY(0);
+	}
+	if (player.getX() < 0) {
+		player.setX(100);
+	} else if (player.getX() > width - player.getWidth()) {
+		player.setX(100);
 	}
 	player.tick();
 
 	// Player collision with terrain
 	for (int i = 0; i < terrain.size(); i++) {
-		
+
 		if (Object::checkCollision(&terrain.at(i), &player)) {
 			player.setY(10);
 			player.setYSpeed(0);
@@ -112,19 +119,19 @@ void Environment::tick() {
 			terrain.erase(terrain.begin());
 		}
 	}
-	
+
 	// Removing old people from the environment
 	if (people.size() != 0) {
 		if (people.front().getX() + people.front().getWidth() < 0) {
 			people.erase(people.begin());
 		}
 	}
-	
+
 }
 void Environment::render(SDL_Renderer* renderer) {
 	bg.render(renderer);
 	player.render(renderer);
-	
+
 	for (int i = 0; i < terrain.size(); i++) {
 		terrain.at(i).render(renderer);
 	}
