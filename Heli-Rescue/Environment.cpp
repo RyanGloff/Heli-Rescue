@@ -63,7 +63,7 @@ void Environment::tick() {
 		player.setY(0);
 	} else if (player.getY() > height - player.getHeight()) {
 		player.setY(0);
-	}
+	} 
 	if (player.getX() < 0) {
 		player.setX(100);
 	} else if (player.getX() > width - player.getWidth()) {
