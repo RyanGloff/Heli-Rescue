@@ -1,7 +1,10 @@
 #include "Environment.h"
 #include "Sounds.h"
+#include "Display.h"
 
 Sounds coll("assets/coll.wav", "effect");
+int Display::score = 0;
+int Display::lives = 3;
 
 Environment::Environment() {}
 Environment::Environment(int width, int height, double gravity) : gravity(gravity), width(width), height(height) {
@@ -68,6 +71,7 @@ void Environment::tick() {
 			player.setY(10);
 			player.setYSpeed(0);
 			coll.play();
+			Display::lives--;
 			std::cout << "Player collided with the terrain" << std::endl;
 		}
 		// Entity-Terrain collision
@@ -85,6 +89,7 @@ void Environment::tick() {
 			player.setYSpeed(0);
 			entities.erase(entities.begin() + i);
 			coll.play();
+			Display::lives--;
 			std::cout << "The player collided with an entity" << std::endl;
 		}
 	}
@@ -93,6 +98,7 @@ void Environment::tick() {
 	for (int i = 0; i < people.size(); i++) {
 		if (Object::checkCollision(&player, &people.at(i))) {
 			people.erase(people.begin() + i);
+			Display::score ++;
 			std::cout << "You saved a civilian" << std::endl;
 		}
 	}
