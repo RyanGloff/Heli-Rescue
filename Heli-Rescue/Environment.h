@@ -35,5 +35,10 @@ public:
 	void tick();
 	void render(SDL_Renderer* renderer);
 	Object& getPlayer();
+	Object& getBG();
+	std::vector<Object> &getTerrain();
+	std::vector<Object> &getEntities();
+	std::vector<Object> &getPeople();
+
 };
 

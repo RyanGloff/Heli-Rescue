@@ -180,3 +180,23 @@ Object& Environment::getPlayer()
 {
 	return player;
 }
+
+Object& Environment::getBG()
+{
+	return bg;
+}
+
+std::vector<Object> &Environment::getTerrain()
+{
+	return terrain;
+}
+
+std::vector<Object> &Environment::getEntities()
+{
+	return entities;
+}
+
+std::vector<Object> &Environment::getPeople()
+{
+	return people;
+}

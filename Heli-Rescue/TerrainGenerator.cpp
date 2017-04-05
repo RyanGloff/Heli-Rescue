@@ -42,3 +42,8 @@ int TerrainGenerator::getNext() {
 	buffer.pop_back();
 	return returnValue;
 }
+
+std::vector<int> TerrainGenerator::getBuffer()
+{
+	return buffer;
+}

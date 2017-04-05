@@ -14,7 +14,8 @@ public:
 	void tick();
 
 	void refillBuffer();
-	
+	std::vector<int> getBuffer();
+
 	int getSeed();
 	int getNext();
 };

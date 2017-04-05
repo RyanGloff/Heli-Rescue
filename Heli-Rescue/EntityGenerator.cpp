@@ -34,3 +34,18 @@ void EntityGenerator::refillBuffer() {
 		entityBuffer.push_back(obj);
 	}
 }
+
+std::vector<Object> &EntityGenerator::getBuffer()
+{
+	return entityBuffer;
+}
+
+int EntityGenerator::getEnvWidth()
+{
+	return envWidth;
+}
+
+int EntityGenerator::getEnvHeight()
+{
+	return envHeight;
+}

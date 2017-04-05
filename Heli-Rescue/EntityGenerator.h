@@ -17,6 +17,8 @@ public:
 	void tick();
 
 	Object nextEntity();
-	
+	std::vector<Object> &getBuffer();
+	int getEnvWidth();
+	int getEnvHeight();
 };
 
