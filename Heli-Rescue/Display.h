@@ -15,10 +15,10 @@ private:
 
 public:
 	
-	Display::Display();
-	Display::~Display();
-	void Display::scoreDsiplay(SDL_Renderer *renderer,int x,int y);
-	void Display::livesDisplay(SDL_Renderer *renderer,int x, int y);
+	Display();
+	~Display();
+	void scoreDsiplay(SDL_Renderer *renderer,int x,int y);
+	void livesDisplay(SDL_Renderer *renderer,int x, int y);
 	static int score;
 	static int lives;
 
