@@ -25,33 +25,38 @@ Display lives;
 
 bool running = false;
 bool start = true;
+
 int main(int argc, char* argv[]) {
 	init();
+	
+	const int TPS = 60;
+	const int TIME_PER_TICK = 1000 / TPS;
+	
 	while (start || running) {		
-		const int TPS = 60;
-		const int TIME_PER_TICK = 1000 / TPS;
+		
 		while (start) {
 			Menu::handleEvent(Menu::e, running, start);
 			Main.render(Window::renderer);
+			SDL_RenderPresent(Window::renderer);
 			Display::lives = 3;
 			}
-
-			Uint32 startTick = SDL_GetTicks();
-			Uint32 startRender = SDL_GetTicks();
-			int frames = 0;
-
+			
+		Uint32 startTick = SDL_GetTicks();
+		Uint32 startRender = SDL_GetTicks();
+		int frames = 0;
+		
 		while (running) {
+			if (Display::lives == 0) {
+				start = true;
+				running = false;
+				Display::score = 0;
+			}
 			bg.play();
 			score.scoreDsiplay(Window::renderer, 5, 5);
 			lives.livesDisplay(Window::renderer, 980, 5);
 			SDL_RenderPresent(Window::renderer);
 			InputHandler::handle(running, *window);
 			Uint32 currentTick = SDL_GetTicks();
-
-			if (Display::lives == 0) {
-				start = true;
-				running = false;
-			}
 
 			if (currentTick - startTick >= TIME_PER_TICK) {
 				tick();
@@ -66,6 +71,7 @@ int main(int argc, char* argv[]) {
 				frames = 0;
 			}
 		}
+		SDL_RenderClear(Window::renderer);
 	}
 	exit();
 	return 0;
@@ -82,10 +88,10 @@ void init() {
 	}
 }
 
-
 void tick() {
 	window->tick();
 }
+
 void render() {
 	window->render();
 }
