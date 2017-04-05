@@ -8,8 +8,8 @@
 class Sounds {
 
 public:
-	Sounds::Sounds(std::string path,std::string type);
-	Sounds::~Sounds();
+	Sounds(std::string path,std::string type);
+	~Sounds();
 public:
 	void Sounds::play();
 	std::string type;

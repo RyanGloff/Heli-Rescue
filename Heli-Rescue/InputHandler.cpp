@@ -7,7 +7,7 @@ InputHandler::~InputHandler()
 {
 }
 
-void InputHandler::handle(bool& isRunning, Window& window)
+void InputHandler::handle(bool& isRunning,Window& window)
 {
 	SDL_Event ev;
 

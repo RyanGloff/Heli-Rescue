@@ -7,7 +7,6 @@ Menu::Menu() {
 Menu::~Menu() {
 	SDL_DestroyTexture(textTexture);
 	SDL_FreeSurface(textSurface);
-	
 }
 
 Menu::Menu(int initState) {
@@ -40,7 +39,7 @@ void Menu::exitMenuRender(SDL_Renderer* renderer) {
 	std::cout << "sure you want to quit?";
 }
 
-void Menu::handleEvent(SDL_Event e, bool& isRunning, bool& isStart, bool&isBegin) {
+void Menu::handleEvent(SDL_Event e, bool& isRunning, bool& isStart) {
 
 	while (SDL_PollEvent(&e) != 0){
 		if (e.type == SDL_QUIT) {
@@ -56,7 +55,6 @@ void Menu::handleEvent(SDL_Event e, bool& isRunning, bool& isStart, bool&isBegin
 			case SDLK_q:
 				isStart = false;
 				isRunning = false;
-				isBegin = false;
 				break;
 			}
 		}	
@@ -89,5 +87,4 @@ void Menu::textDisplay(std::string text, int x, int y, int size, int r, int g, i
 	/*SDL_DestroyTexture(textTexture);
 	SDL_FreeSurface(textSurface);*/
 	TTF_CloseFont(font);
-	
 }

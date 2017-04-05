@@ -25,7 +25,7 @@ public:
 	Menu(int initState);
 	~Menu();
 
-	static void handleEvent(SDL_Event e,bool& isRunning, bool& isStart,bool& isBegin);
+	static void handleEvent(SDL_Event e,bool& isRunning, bool& isStart);
 
 	void render(SDL_Renderer* renderer);
 	void mainMenuRender(SDL_Renderer* renderer);
