@@ -40,7 +40,7 @@ void Menu::exitMenuRender(SDL_Renderer* renderer) {
 	std::cout << "sure you want to quit?";
 }
 
-void Menu::handleEvent(SDL_Event e, bool& isRunning, bool& isStart) {
+void Menu::handleEvent(SDL_Event e, bool& isRunning, bool& isStart, bool&isBegin) {
 
 	while (SDL_PollEvent(&e) != 0){
 		if (e.type == SDL_QUIT) {
@@ -55,6 +55,8 @@ void Menu::handleEvent(SDL_Event e, bool& isRunning, bool& isStart) {
 				break;
 			case SDLK_q:
 				isStart = false;
+				isRunning = false;
+				isBegin = false;
 				break;
 			}
 		}	

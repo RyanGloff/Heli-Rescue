@@ -25,23 +25,26 @@ Display lives;
 
 bool running = false;
 bool start = true;
+bool begin = true;
 
 int main(int argc, char* argv[]) {
-	while (true) {
+	while (begin) {
+		
 		init();
 		const int TPS = 60;
 		const int TIME_PER_TICK = 1000 / TPS;
 
-		while (start && !running) {
-			Menu::handleEvent(Menu::e, running, start);
+		while (start) {
+			Menu::handleEvent(Menu::e, running, start,begin);
 			Main.render(Window::renderer);
+			Display::lives = 3;
 		}
 
 		Uint32 startTick = SDL_GetTicks();
 		Uint32 startRender = SDL_GetTicks();
 		int frames = 0;
 
-		while (running && !start) {
+		while (running) {
 			bg.play();
 			score.scoreDsiplay(Window::renderer, 5, 5);
 			lives.livesDisplay(Window::renderer, 980, 5);
@@ -67,8 +70,9 @@ int main(int argc, char* argv[]) {
 				frames = 0;
 			}
 		}
-		exit();
+	
 	}
+	exit();
 	return 0;
 }
 
