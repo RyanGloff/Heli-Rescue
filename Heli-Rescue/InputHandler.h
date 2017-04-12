@@ -18,4 +18,3 @@ public:
 	static void keyHandler(SDL_Event ev, Object& player, bool* isRunning);
 	static void mouseHandler(SDL_Event ev);
 };
-

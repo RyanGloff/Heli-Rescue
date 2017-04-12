@@ -18,4 +18,3 @@ public:
 	static SDL_Renderer *renderer;
 	static SDL_Surface *surface;
 };
-

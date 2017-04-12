@@ -8,14 +8,12 @@ private:
 	int seed;
 public:
 	TerrainGenerator();
-	TerrainGenerator(int seed);
 	~TerrainGenerator();
 
 	void tick();
 
 	void refillBuffer();
-	
+
 	int getSeed();
 	int getNext();
 };
-

@@ -40,4 +40,3 @@ public:
 	void setYSpeed(double ySpeed);
 	void setGravityEnabled(bool gravity);
 };
-

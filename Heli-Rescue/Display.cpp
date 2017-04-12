@@ -14,7 +14,7 @@ Display::~Display() {
 }
 
 void Display::scoreDsiplay(SDL_Renderer *renderer,int x,int y ) {
-	
+
 	SDL_Rect Rect = { x,y,w,h };
 
 	std::stringstream strm;
@@ -28,16 +28,16 @@ void Display::scoreDsiplay(SDL_Renderer *renderer,int x,int y ) {
 
 	SDL_QueryTexture(scoreTexture, NULL, NULL, &w, &h);
 
-	
+
 	SDL_RenderCopy(renderer, scoreTexture, nullptr, &Rect);
 	//SDL_RenderPresent(renderer);
-	
+
 	TTF_CloseFont(font);
 
 }
 
 void Display::livesDisplay(SDL_Renderer *renderer,int x,int y) {
-	
+
 	SDL_Rect livesRect = { x,y,w,h };
 
 	std::stringstream strm;
@@ -57,4 +57,3 @@ void Display::livesDisplay(SDL_Renderer *renderer,int x,int y) {
 
 	TTF_CloseFont(font);
 }
-

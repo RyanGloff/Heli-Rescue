@@ -11,10 +11,10 @@ private:
 	int w = 10;
 	int h = 10;
 	int size = 40;
-	
+
 
 public:
-	
+
 	Display();
 	~Display();
 	void scoreDsiplay(SDL_Renderer *renderer,int x,int y);

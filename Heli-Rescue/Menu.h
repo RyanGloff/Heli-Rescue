@@ -30,10 +30,9 @@ public:
 	void render(SDL_Renderer* renderer);
 	void mainMenuRender(SDL_Renderer* renderer);
 	void exitMenuRender(SDL_Renderer* renderer);
-	
+
 	void setState(int state);
 	int getState();
-	
+
 	void textDisplay(std::string text, int x, int y, int size, int r, int g, int b, SDL_Renderer* renderer);
 };
-

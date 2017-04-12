@@ -1,6 +1,5 @@
 #include <iostream>
-#include <sstream>
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include "InputHandler.h"
 #include "Sounds.h"
 #include "Window.h"
@@ -9,7 +8,7 @@
 
 SDL_Event Menu::e;
 
-void init(int argc, char* argv[]);
+void init();
 void tick();
 void render();
 void exit();
@@ -28,7 +27,7 @@ bool running = false;
 bool start = true;
 
 int main(int argc, char* argv[]) {
-	init(argc, argv);
+	init();
 
 	const int TPS = 60;
 	const int TIME_PER_TICK = 1000 / TPS;
@@ -78,19 +77,10 @@ int main(int argc, char* argv[]) {
 	return 0;
 }
 
-void init(int argc, char* argv[]) {
+void init() {
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
 		std::cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;
 	}
-	int x;
-	if (argv[1] != nullptr) {
-		std::stringstream ss(argv[1]);
-		ss >> x;
-		srand(x);
-	} else {
-		srand(time(NULL));
-	}
-
 	window = new Window("Heli-Rescue");
 
 	if (TTF_Init() == -1) {

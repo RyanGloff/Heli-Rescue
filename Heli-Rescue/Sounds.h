@@ -11,11 +11,11 @@ public:
 	Sounds(std::string path,std::string type);
 	~Sounds();
 public:
-	void Sounds::play();
+	void play();
 	std::string type;
 	std::string soundType;
 private:
-	
+
 	Mix_Music* mus;
 	Mix_Chunk* eff;
 

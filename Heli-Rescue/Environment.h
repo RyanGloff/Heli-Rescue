@@ -9,7 +9,7 @@ class Environment {
 	std::vector<Object> terrain;
 	std::vector<Object> entities;
 	std::vector<Object> people;
-	
+
 	Object player;
 	Object bg;
 
@@ -36,4 +36,3 @@ public:
 	void render(SDL_Renderer* renderer);
 	Object& getPlayer();
 };
-

@@ -17,6 +17,5 @@ public:
 	void tick();
 
 	Object nextEntity();
-	
-};
 
+};

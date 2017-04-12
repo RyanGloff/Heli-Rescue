@@ -3,6 +3,7 @@
 
 EntityGenerator::EntityGenerator() {}
 EntityGenerator::EntityGenerator(int envWidth, int envHeight) : envWidth(envWidth), envHeight(envHeight) {
+
 	refillBuffer();
 }
 EntityGenerator::~EntityGenerator() {

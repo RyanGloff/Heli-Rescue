@@ -1,15 +1,9 @@
 #include "TerrainGenerator.h"
 #include <iostream>
-#include <stdlib.h>
+#include <fstream>
 #include <time.h>
 
 TerrainGenerator::TerrainGenerator() {
-	seed = time(NULL);
-	srand(seed);
-	refillBuffer();
-}
-TerrainGenerator::TerrainGenerator(int seed) : seed(seed) {
-	srand(seed);
 	refillBuffer();
 }
 TerrainGenerator::~TerrainGenerator() {

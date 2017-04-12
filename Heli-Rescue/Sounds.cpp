@@ -1,4 +1,4 @@
-#include <SDL_mixer.h>
+#include <SDL2/SDL_mixer.h>
 #include <iostream>
 #include "Sounds.h"
 
@@ -38,4 +38,3 @@ void Sounds::play() {
 		//std::cout << "playing effect\n";
 	}
 }
-

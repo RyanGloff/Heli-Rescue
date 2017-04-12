@@ -64,7 +64,7 @@ bool Object::checkCollision(Object* obj1, Object* obj2) {
 		if (obj1->getY() + obj1->getHeight() > obj2->getY() && obj1->getY() < obj2->getY() + obj2->getHeight()) {
 			return true;
 		}
-	} 
+	}
 	return false;
 }
 
