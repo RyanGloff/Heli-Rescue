@@ -33,6 +33,6 @@ public:
 
 	void setState(int state);
 	int getState();
-	void Menu::loadFont(int size);
+	void loadFont(int size);
 	void textDisplay(std::string text, int x, int y, int size, int r, int g, int b, SDL_Renderer* renderer,TTF_Font* font);
 };
