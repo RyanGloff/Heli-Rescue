@@ -7,7 +7,7 @@
 class Menu
 {
 	std::string text;
-	TTF_Font* font = nullptr;
+	//TTF_Font* font = nullptr;
 	//static SDL_Event e;
 	bool quit;
 	SDL_Surface* textSurface;
@@ -20,7 +20,7 @@ class Menu
 
 public:
 	static SDL_Event e;
-
+	TTF_Font* font = nullptr;
 	Menu();
 	Menu(int initState);
 	~Menu();
@@ -33,6 +33,6 @@ public:
 
 	void setState(int state);
 	int getState();
-
-	void textDisplay(std::string text, int x, int y, int size, int r, int g, int b, SDL_Renderer* renderer);
+	void Menu::loadFont(int size);
+	void textDisplay(std::string text, int x, int y, int size, int r, int g, int b, SDL_Renderer* renderer,TTF_Font* font);
 };

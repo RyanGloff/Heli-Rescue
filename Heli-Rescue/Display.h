@@ -14,11 +14,10 @@ private:
 
 
 public:
-
 	Display();
 	~Display();
-	void scoreDsiplay(SDL_Renderer *renderer,int x,int y);
-	void livesDisplay(SDL_Renderer *renderer,int x, int y);
+	void scoreDsiplay(SDL_Renderer *renderer,int x,int y,TTF_Font* font);
+	void livesDisplay(SDL_Renderer *renderer,int x, int y,TTF_Font* font);
 	static int score;
 	static int lives;
 

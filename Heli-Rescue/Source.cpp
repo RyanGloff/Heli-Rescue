@@ -18,6 +18,8 @@ const int WINDOW_WIDTH = 1080;
 const int WINDOW_HEIGHT = 720;
 
 Window* window = nullptr;
+TTF_Font* Dfont = nullptr;
+int size = 40;
 Sounds bg("assets/bg.wav", "music");
 Menu Main(1);
 Display score;
@@ -53,8 +55,8 @@ int main(int argc, char* argv[]) {
 				Display::score = 0;
 			}
 			bg.play();
-			score.scoreDsiplay(Window::renderer, 5, 5);
-			lives.livesDisplay(Window::renderer, 980, 5);
+			score.scoreDsiplay(Window::renderer, 5, 5,Dfont);
+			lives.livesDisplay(Window::renderer, 980, 5,Dfont);
 			SDL_RenderPresent(Window::renderer);
 			InputHandler::handle(running, *window);
 			Uint32 currentTick = SDL_GetTicks();
@@ -88,7 +90,7 @@ void init(int argc, char* argv[]) {
 		ss >> x;
 		srand(x);
 	} else {
-		srand(time(NULL));
+		//srand(time(NULL));
 	}
 
 	window = new Window("Heli-Rescue");
@@ -96,6 +98,8 @@ void init(int argc, char* argv[]) {
 	if (TTF_Init() == -1) {
 		std::cout << "could not init TTF" << std::endl;
 	}
+	Main.loadFont(60);
+	Dfont = TTF_OpenFont("assets/vevey.ttf", size);
 }
 
 void tick() {
