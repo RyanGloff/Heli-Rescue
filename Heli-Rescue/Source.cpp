@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include <SDL.h>
+#include <SDL_image.h>
 #include "InputHandler.h"
 #include "Sounds.h"
 #include "Window.h"
@@ -53,7 +54,7 @@ int main(int argc, char* argv[]) {
 
 		while (running) {
 			if (Display::lives == 0) {
-				//hsc.addScore(Display::score, "Unknown Player");
+				hsc.addScore(Display::score, "Unknown Player");
 				std::vector<Score> highScores = hsc.getScores();
 				std::cout << "Number of scores: " << highScores.size() << std::endl;
 				for (Score s : highScores) {
@@ -92,6 +93,9 @@ int main(int argc, char* argv[]) {
 void init(int argc, char* argv[]) {
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
 		std::cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;
+	}
+	if (SDL_Init(IMG_INIT_PNG < 0)) {
+		std::cout << "SDL could not init pngs! SDL_Error: " << SDL_GetError() << std::endl;
 	}
 	int x;
 	if (argv[1] != nullptr) {
