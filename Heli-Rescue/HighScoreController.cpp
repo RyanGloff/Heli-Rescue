@@ -4,7 +4,7 @@ HighScoreController::HighScoreController () {
   db = new Database("Heli-Rescue Client", "Pa55word", "heli-rescue", "150.156.209.235");
 }
 
-void HighScoreController::addScore (int score, std::string name) {
+void HighScoreController::addScore (int score) {
   std::ostringstream oss;
   oss << "INSERT INTO scores(score, firstName) VALUES (" << score << ", '" << name << "');";
 
@@ -29,4 +29,8 @@ std::vector<Score> HighScoreController::getScores () {
   }
   std::cout << scores.size() << std::endl;
   return scores;
+}
+
+void HighScoreController::setName (std::string name) {
+  this->name = name;
 }

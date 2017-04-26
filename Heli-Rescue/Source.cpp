@@ -54,7 +54,7 @@ int main(int argc, char* argv[]) {
 
 		while (running) {
 			if (Display::lives == 0) {
-				hsc.addScore(Display::score, "Unknown Player");
+				hsc.addScore(Display::score);
 				std::vector<Score> highScores = hsc.getScores();
 				std::cout << "Number of scores: " << highScores.size() << std::endl;
 				for (Score s : highScores) {
@@ -99,6 +99,9 @@ void init(int argc, char* argv[]) {
 	}
 	int x;
 	if (argv[1] != nullptr) {
+		hsc.setName(argv[1]);
+	}
+	if (argv[2] != nullptr) {
 		std::stringstream ss(argv[1]);
 		ss >> x;
 		srand(x);

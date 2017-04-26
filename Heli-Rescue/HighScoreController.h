@@ -29,9 +29,11 @@ public:
 class HighScoreController {
 private:
   Database* db = nullptr;
+  std::string name;
 public:
   HighScoreController();
 
-  void addScore(int, std::string);
+  void addScore(int);
   std::vector<Score> getScores ();
+  void setName (std::string);
 };
