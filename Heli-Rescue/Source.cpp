@@ -6,6 +6,7 @@
 #include "Window.h"
 #include "Menu.h"
 #include "Display.h"
+#include "HighScoreController.h"
 
 SDL_Event Menu::e;
 
@@ -24,6 +25,8 @@ Sounds bg("assets/bg.wav", "music");
 Menu Main(1);
 Display score;
 Display lives;
+
+HighScoreController hsc;
 
 
 bool running = false;
@@ -50,6 +53,12 @@ int main(int argc, char* argv[]) {
 
 		while (running) {
 			if (Display::lives == 0) {
+				//hsc.addScore(Display::score, "Unknown Player");
+				std::vector<Score> highScores = hsc.getScores();
+				std::cout << "Number of scores: " << highScores.size() << std::endl;
+				for (Score s : highScores) {
+					std::cout << s.toString() << std::endl;
+				}
 				start = true;
 				running = false;
 				Display::score = 0;
